@@ -13,8 +13,6 @@ class ExampleController extends Controller
 
     /**
      * __construct
-     *
-     * @param ExampleService $exampleService
      */
     public function __construct(ExampleService $exampleService)
     {

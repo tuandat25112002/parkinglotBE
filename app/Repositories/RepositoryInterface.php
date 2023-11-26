@@ -31,7 +31,7 @@ interface RepositoryInterface
     /**
      * Create
      *
-     * @param array $attributes
+     * @param  array  $attributes
      * @return mixed
      */
     public function create($attributes = []);
@@ -39,7 +39,7 @@ interface RepositoryInterface
     /**
      * Update
      *
-     * @param array $attributes
+     * @param  array  $attributes
      * @return mixed
      */
     public function update($id, $attributes = []);

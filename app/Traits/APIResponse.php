@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response as HTTPStatus;
 trait APIResponse
 {
     /**
-     * @param mixed $message
+     * @param  mixed  $message
      */
     public function responseSuccess($message = 'Success', int $status = HTTPStatus::HTTP_OK): JsonResponse
     {
@@ -20,8 +20,8 @@ trait APIResponse
     }
 
     /**
-     * @param mixed $message
-     * @param mixed $data
+     * @param  mixed  $message
+     * @param  mixed  $data
      */
     public function responseSuccessWithData($data, $message = 'Success', int $status = HTTPStatus::HTTP_OK): JsonResponse
     {
@@ -33,7 +33,7 @@ trait APIResponse
     }
 
     /**
-     * @param mixed $message
+     * @param  mixed  $message
      */
     public function responseError($message = [], int $status = HTTPStatus::HTTP_INTERNAL_SERVER_ERROR): JsonResponse
     {
@@ -44,8 +44,8 @@ trait APIResponse
     }
 
     /**
-     * @param string $message
-     * @param mixed $errors
+     * @param  string  $message
+     * @param  mixed  $errors
      */
     public function responseErrorWithData($errors, $message = 'Error', int $status = HTTPStatus::HTTP_INTERNAL_SERVER_ERROR): JsonResponse
     {

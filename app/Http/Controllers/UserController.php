@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ParkingRequest;
-use App\Models\Parking;
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 
-class ParkingController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,18 +14,7 @@ class ParkingController extends Controller
      */
     public function index()
     {
-        try {
-            $parkings = Parking::get();
-
-            return response()->json(
-                $parkings, 200);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'message' => 'Failed',
-                'status' => 400,
-            ], 400);
-        }
-
+        //
     }
 
     /**
@@ -45,49 +33,31 @@ class ParkingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ParkingRequest $request)
+    public function store(UserRequest $userRequest)
     {
-        try {
-            $parking = Parking::create([
-                'name' => $request->name,
-                'address' => $request->address,
-                'lat' => $request->lat,
-                'long' => $request->long,
-                'image' => $request->image,
-                'slot' => $request->slot,
-                'max' => $request->max,
-            ]);
 
-            return response()->json([
-                'message' => 'Create Successfully',
-                'data' => $parking,
-                'status' => 200,
-            ], 200);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'message' => $th->getMessage(),
-                'status' => 400,
-            ], 400);
-        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
+
         try {
-            $parking = Parking::find($id);
+            $user = auth()->user();
 
             return response()->json([
-                $parking,
+                'message' => 'Get User Success',
+                'data' => $user,
+                'status' => 200,
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => 'Failed',
+                'data' => $th->getMessage(),
                 'status' => 400,
             ], 400);
         }

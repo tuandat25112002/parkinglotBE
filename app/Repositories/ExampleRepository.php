@@ -27,16 +27,16 @@ class ExampleRepository extends BaseRepository implements ExampleInterface
     public function getExamples($filter)
     {
         $data = $this->model
-            ->when(!empty($filter->email), function ($q) use ($filter) {
+            ->when(! empty($filter->email), function ($q) use ($filter) {
                 $q->where('email', '=', "$filter->email");
             })
-            ->when(!empty($filter->name), function ($q) use ($filter) {
+            ->when(! empty($filter->name), function ($q) use ($filter) {
                 $q->where('name', 'like', "%$filter->name%");
             })
-            ->when(!empty($filter->start_at), function ($query) use ($filter) {
+            ->when(! empty($filter->start_at), function ($query) use ($filter) {
                 $query->whereDate('created_at', '>=', $filter->start_at);
             })
-            ->when(!empty($filter->end_at), function ($query) use ($filter) {
+            ->when(! empty($filter->end_at), function ($query) use ($filter) {
                 $query->whereDate('created_at', '<=', $filter->end_at);
             });
 

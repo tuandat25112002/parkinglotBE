@@ -9,7 +9,9 @@ class Parking extends Model
 {
     use HasFactory;
 
-    protected $table = 'parkings';
+    public $timestamps = false;
+
+    protected $table = 'parking';
 
     /**
      * The attributes that are mass assignable.
@@ -17,10 +19,14 @@ class Parking extends Model
      * @var array
      */
     protected $fillable = [
-        'TenTram',
-        'DiaChi',
-        'Quan',
-        'Vido',
-        'KinhDo'
+        'name',
+        'address',
+        'lat',
+        'long',
+        'slot',
+        'max',
+        'image',
     ];
+
+    protected $primaryKey = 'id';
 }
