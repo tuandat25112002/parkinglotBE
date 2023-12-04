@@ -29,7 +29,7 @@ class UserRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8',
-            'phone' => 'required|min:9',
+            'phone' => 'min:9',
             'confirm_password' => 'required|same:password',
         ];
     }
@@ -54,6 +54,7 @@ class UserRequest extends FormRequest
             'password.required' => 'Password is required!',
             'password.min' => 'Password is too short',
             'confirm_password.required' => 'Confirm Password is required!',
+            'phone.required' => 'Phone is required!',
             'confirm_password.same' => 'Confirm password is as same as passoword',
         ];
     }

@@ -16,7 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+Route::get('login', [AdminController::class, 'login'])->name('login');
+Route::get('register', [AdminController::class, 'register'])->name('register');
+Route::post('check-login', [AdminController::class, 'checkLogin']);
+Route::post('create-user', [AdminController::class, 'create'])->name('create-user');
+Route::group([
+    'prefix' => '/admin',
+    'middleware' => ['auth'],
+], function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+    Route::get('logout', [AdminController::class, 'logoutHttp'])->name('logout');
+
+});
+
 Route::resource('categories', CategoryController::class);
 
 // Admin page management
