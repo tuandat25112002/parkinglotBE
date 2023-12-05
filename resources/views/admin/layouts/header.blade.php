@@ -1,7 +1,20 @@
+<div class="row p-0 m-0 proBanner" id="proBanner">
+    <div class="col-md-12 p-0 m-0">
+      <div class="card-body card-body-padding d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center justify-content-between">
+          <a href="https://www.bootstrapdash.com/product/purple-bootstrap-admin-template/"><i class="mdi mdi-home me-3 text-white"></i></a>
+          <button id="bannerClose" class="btn border-0 p-0">
+            <i class="mdi mdi-close text-white me-0"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- partial:partials/_navbar.html -->
   <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-      <a class="navbar-brand brand-logo" href="{{route('dashboard')}}"><img src="{{asset('admin/images/logo-horizontal-web.png')}}" alt="logo" /></a>
-      <a class="navbar-brand brand-logo-mini" href="{{route('dashboard')}}"><img src="{{asset('admin/images/logo-full-web.png')}}" alt="logo" /></a>
+      <a class="navbar-brand brand-logo" href="{{route('dashboard')}}"><img src="admin/images/logo.svg" alt="logo" /></a>
+      <a class="navbar-brand brand-logo-mini" href="{{route('dashboard')}}"><img src="admin/images/logo-mini.svg" alt="logo" /></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-stretch">
       <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">

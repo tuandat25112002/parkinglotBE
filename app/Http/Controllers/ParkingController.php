@@ -36,19 +36,7 @@ class ParkingController extends Controller
      */
     public function create()
     {
-        return view('admin.parkings.create');
-    }
-
-    public function list()
-    {
-        try {
-            $parkings = Parking::get();
-
-            return response()->json(
-                $parkings, 200);
-        } catch (\Throwable $th) {
-            abort('500');
-        }
+        //
     }
 
     /**
