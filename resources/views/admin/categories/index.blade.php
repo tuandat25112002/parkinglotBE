@@ -15,17 +15,33 @@
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <div class="col-md-12 text-right mb-3">
+                  <div class="col-md-12 text-right mb-3" style=" margin-left: 40px;">
                     <a href="{{ route('categories.create') }}" class="btn btn-primary">Add Category</a>
+                </div>
+                <div class="card-body">
+                    <div class="col-md-12 text-right mb-3">
+                    @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                                @if (session('status'))
+                        <div class="alert container-fluid alert-success" role="alert">
+                                {{session('status')}} <i id="close" class="fas fa-times float-right mt-1"></i>
+                            </div>
+                        @endif
                 </div>
                     <table class="table table-bordered">
                       <thead>
                         <tr>
                           <th> # </th>
                           <th> Name </th>
-                          <th>Trạng thái</th>
                           <th> Status </th>
-
+                        <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -33,15 +49,15 @@
 					<tr>
 						<th>{{ $category->id }}</th>
 						<td>{{ $category->name }}</td>
-                        <!-- <td> -->
-                      <!-- {{$category->active==1? '<span class="label label-success">Hiện</span>' : '<span class="label label-danger">Ẩn</span>'}} -->
-                    <!-- </td> -->
-                    <td>
-    <label class="switch">
-        <input type="checkbox" class="checkbox-active" data-id="{{ $category->id }}" {{ $category->active == 1 ? 'checked' : '' }}>
-        <span class="slider round"></span>
-    </label>
-</td>
+                        <td>
+                            @if($category->status == 1)
+                                <span class="badge badge-danger">Private</span>
+                            @else
+                                <span class="badge badge-success">Public</span>
+                            @endif
+                        </td>
+
+
 
                         <td>
             <form method="POST" action="{{ route('categories.destroy', $category->id) }}">
@@ -92,5 +108,57 @@ $('.checkbox-active').click(function(){
   });
 });
 </script>
+<style>
+    /* Style for radio buttons */
+.form-check {
+    margin-top: 8px;
+}
+
+.radio-label {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    padding-left: 25px;
+    margin-right: 15px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.radio-label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.radio-custom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #fff;
+    border: 1px solid #999;
+    border-radius: 50%;
+}
+
+.radio-text {
+    margin-left: 30px;
+}
+
+/* Style for checked radio buttons */
+.radio-label input:checked ~ .radio-custom:after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #333;
+}
+
+</style>
           <!-- content-wrapper ends -->
 @endsection
+?>
