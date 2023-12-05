@@ -14434,6 +14434,11 @@ dl {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column; }
+  .auth .brand-logo img {
+    width: 200px;
+    height: 90px;
+    object-fit: cover;
+  }
   @media (max-width: 991px) {
     .main-panel {
       margin-left: 0;
