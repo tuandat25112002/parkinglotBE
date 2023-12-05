@@ -94,4 +94,3 @@ $('.checkbox-active').click(function(){
 </script>
           <!-- content-wrapper ends -->
 @endsection
-?>

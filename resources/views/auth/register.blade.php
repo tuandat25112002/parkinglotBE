@@ -27,8 +27,8 @@
             <div class="row flex-grow">
               <div class="col-lg-4 mx-auto">
                 <div class="auth-form-light text-left p-5">
-                  <div class="brand-logo">
-                    <img src="admin/images/logo.svg">
+                  <div class="brand-logo mb-0">
+                    <img src="{{asset('admin/images/logo-horizontal-web.png')}}">
                   </div>
                   <h4>Đăng ký</h4>
                   <h6 class="font-weight-light">Đăng ký dễ dàng với chỉ vài bước</h6>

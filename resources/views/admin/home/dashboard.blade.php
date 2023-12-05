@@ -325,4 +325,3 @@
     <!-- partial -->
   </div>
 @endsection
-?>
