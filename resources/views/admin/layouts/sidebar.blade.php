@@ -5,7 +5,7 @@
           <div class="nav-profile-image">
             @if(isset(Auth::user()->avatar))
               <img src="{{asset(Auth::user()->avatar)}}" alt="image">
-            @else 
+            @else
               <img src="{{asset('admin/images/avatar-default.png')}}" alt="image">
             @endif
             <span class="login-status online"></span>
@@ -19,12 +19,11 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{route('dashboard')}}">
+        <a class="nav-link" href="index.html">
           <span class="menu-title">Dashboard</span>
           <i class="mdi mdi-home menu-icon"></i>
         </a>
       </li>
-      @if(Auth::user()->role==0)
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-title">Danh mục</span>
@@ -33,39 +32,24 @@
         </a>
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{route('categories.create')}}">Thêm danh mục</a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Danh sách danh mục</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('Prohibited.create')}}">Thêm danh mục</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('Prohibited.index')}}">Danh sách danh mục</a></li>
           </ul>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#user-manager" aria-expanded="false" aria-controls="user-manager">
-          <span class="menu-title">Quản lý người dùng</span>
+        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+          <span class="menu-title">QL tuyến đường cấm</span>
           <i class="menu-arrow"></i>
-          <i class="mdi mdi-contacts menu-icon"></i>
+          <i class="mdi mdi-crosshairs-gps menu-icon"></i>
         </a>
-        <div class="collapse" id="user-manager">
+        <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{route('new-user')}}">Thêm người dùng</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{route('list-user')}}">Danh sách người dùng</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('Prohibited.create')}}">Thêm tuyến đường bị cấm</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('Prohibited.index')}}">Danh sách tuyến đường bị cấm</a></li>
           </ul>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#park-manager" aria-expanded="false" aria-controls="park-manager">
-          <span class="menu-title">Quản lý bãi đổ xe</span>
-          <i class="menu-arrow"></i>
-          <i class="mdi mdi-car-connected menu-icon"></i>
-        </a>
-        <div class="collapse" id="park-manager">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{route('new-park')}}">Thêm bãi đổ xe</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{route('list-park')}}">Danh sách bãi đổ xe</a></li>
-          </ul>
-        </div>
-      </li>
-      @else 
-      @endif
       <li class="nav-item">
         <a class="nav-link" href="pages/icons/mdi.html">
           <span class="menu-title">Icons</span>

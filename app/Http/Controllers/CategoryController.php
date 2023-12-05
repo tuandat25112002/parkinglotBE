@@ -108,7 +108,7 @@ class CategoryController extends Controller
           ]);
         $category = Categories::find($id);
         $category->name=$data['name'];
-        $category->status = $data['status'];
+
         $category->updated_at=time();
         $category->save();
         return redirect()->back()->with('status','Cập nhật danh mục thành công');
