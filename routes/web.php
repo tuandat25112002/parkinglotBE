@@ -44,7 +44,7 @@ Route::group([
             Route::post('user-role', [UserController::class, 'updateRole'])->name('user-role');
             Route::get('new-park', [ParkingController::class, 'create'])->name('new-park');
             Route::get('list-park', [ParkingController::class, 'list'])->name('list-park');
-            Route::resource('parkings', ParkingController::class);
+            Route::resource('parks', ParkingController::class);
         });
     });
 });

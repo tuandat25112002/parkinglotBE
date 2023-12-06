@@ -138,3 +138,57 @@ img {
 .navbar .navbar-brand-wrapper .navbar-brand.brand-logo-mini img {
   width: 40px !important;
 }
+.filearray img {
+  height: 160px;
+}
+.pip {
+  position: relative;
+}
+.remove {
+  position: absolute;
+  top: -5px;
+  right: -5px; 
+  background-color: white;
+  border-radius: 50%;
+  height: 28px;
+  z-index: 1;
+  width: 26px;
+}
+.remove i {
+  font-size: 25px;
+  color:red;
+}
+.pip_old {
+  position: relative;
+}
+.remove_old {
+  position: absolute;
+  top: -5px;
+  right: -5px; 
+  background-color: white;
+  border-radius: 50%;
+  height: 28px;
+  z-index: 1;
+  width: 26px;
+}
+.remove_old i {
+  font-size: 25px;
+  color:red;
+}
+.cover-image {
+  position: relative;
+  width: fit-content;
+  
+}
+.cover-image button {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 18px;
+  z-index: 1;
+  width: 18px;
+  border-radius: 50%;
+  font-size: 9px;
+  top: -5px;
+  right: -5px; 
+}

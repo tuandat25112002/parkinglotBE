@@ -25,35 +25,41 @@
                                 {{session('status')}} <i id="close" class="mdi mdi-close-circle float-right mt-1"></i>
                             </div>
                         @endif
-                        <form id="register" action="{{route('parks.store')}}" method="POST" class="pt-3" enctype="multipart/form-data">
+                        @if (session('erorr'))
+                        <div class="alert container-fluid alert-danger" role="alert">
+                                {{session('erorr')}} <i id="close" class="mdi mdi-close-circle float-right mt-1"></i>
+                            </div>
+                        @endif
+                        <form id="register" action="{{route('parks.update',[$parking->id])}}" method="POST" class="pt-3" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-lg" id="name" name="name" value="{{old('name')}}" placeholder="Tên bãi đổ xe">
+                                        <input type="text" class="form-control form-control-lg" id="name" name="name" value="{{$parking->name}}" placeholder="Tên bãi đổ xe">
                                         <p id="name-errors" class="text-danger mb-0 mt-1 "></p>
                                       </div>
                                       <div id="map"></div>
                                       <div class="form-group mt-5">
-                                        <input type="text" class="form-control form-control-lg" id="address" name="address" value="{{old('address')}}" placeholder="Địa chỉ">
+                                        <input type="text" class="form-control form-control-lg" id="address" name="address" value="{{$parking->address}}" placeholder="Địa chỉ">
                                         <p id="address-errors" class="text-danger mb-0 mt-1 "></p>
                                       </div>
                                       <div class="row">
                                           <div class="form-group col-md-6">
-                                              <input type="text" class="form-control form-control-lg" id="lat" name="lat" value="{{old('lat')}}" placeholder="Vĩ độ">
+                                              <input type="text" class="form-control form-control-lg" id="lat" name="lat" value="{{$parking->lat}}" placeholder="Vĩ độ">
                                               <p id="lat-errors" class="text-danger mb-0 mt-1 "></p>
                                             </div>
                                             <div class="form-group col-md-6">
-                                              <input type="text" class="form-control form-control-lg" id="long" name="long" value="{{old('long')}}" placeholder="Kinh độ">
+                                              <input type="text" class="form-control form-control-lg" id="long" name="long" value="{{$parking->long}}" placeholder="Kinh độ">
                                               <p id="long-errors" class="text-danger mb-0 mt-1 "></p>
                                             </div>
                                       </div>
                                       <div class="form-group">
                                         <label for="editor">Mô tả (<span class="required">*</span>):</label>
-                                        <textarea class="form-control" id="editor" name="description" rows="5" resize="none">{{old('description')}}</textarea>
+                                        <textarea class="form-control" id="editor" name="description" rows="5" resize="none"><?php echo $parking->description?></textarea>
                                       </div>
                                       <div class="form-group">
-                                          <input type="number" class="form-control form-control-lg" id="max" name="max" placeholder="Số lượng chỗ để xe">
+                                          <input type="number" class="form-control form-control-lg" id="max" name="max" value="{{$parking->max}}" placeholder="Số lượng chỗ để xe">
                                           <p id="max-errors" class="text-danger mb-0 mt-1 "></p>
                                       </div>          
                                 </div>
@@ -67,13 +73,22 @@
                                             </div>
                                             <label for="thumbnail" class="btn btn-gradient-primary">Thêm ảnh</label>
                                             <input type="file" name="image_tmp[]" id="thumbnail" multiple />  
-                                            <input type="file" name="image[]" id="images" multiple />  
+                                            <input type="file" name="image[]" id="images" class="d-none" multiple />  
+                                            <input type="hidden" name="image_delete" id="image_delete"/>
+                                            <div class="filearray row"> 
+                                                @foreach ($parking->image as $image) 
+                                                <div class="pip_old col-md-4 px-1 mb-2">
+                                                    <img class="w-100" src="{{$image}}">
+                                                    <span class="remove_old" data-image="{{$image}}"><i class="mdi mdi-minus-circle"></i></span>
+                                                </div> 
+                                                @endforeach
+                                            </div>
                                         <p id="image-errors" class="text-danger mb-0 mt-1 "></p>
                                       </div>
                                 </div>
                             </div>
                             <div class="mt-3">
-                              <input type="submit" id="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" value="Tạo bãi đổ xe">
+                              <input type="submit" id="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" value="Cập nhật bãi đổ xe">
                             </div>
                           </form>
                     </div>
@@ -152,6 +167,17 @@
                     })
             })
             });
+            $('.remove_old').click(function(e){
+                e.preventDefault();
+                var pips = $('.pip_old').toArray();
+                
+                var $selectedPip = $(this).parent('.pip_old');
+                var image = $(this).data('image');
+                var val =  $("#image_delete").val()
+                $("#image_delete").val(val+image+","); 
+                console.log($("#image_delete").val());
+                $selectedPip.remove();
+            });
     </script>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
 integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
@@ -159,7 +185,7 @@ crossorigin=""></script>
 <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 <script>
 var map_init = L.map('map', {
-    center: [9.0820, 8.6753],
+    center: [{{$parking->long}}, {{$parking->lat}}],
     zoom: 8
 });
 var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -195,9 +221,9 @@ var marker, circle, lat, long, accuracy;
 
 function getPosition(position) {
     // console.log(position)
-    lat = position.coords.latitude
-    long = position.coords.longitude
-    accuracy = position.coords.accuracy
+    lat = {{$parking->lat}}
+    long = {{$parking->long}}
+    accuracy = 0
 
     if (marker) {
         map_init.removeLayer(marker)

@@ -21,11 +21,13 @@ class Parking extends Model
     protected $fillable = [
         'name',
         'address',
+        'description',
         'lat',
         'long',
         'slot',
         'max',
         'image',
+        'search_number',
     ];
 
     protected $primaryKey = 'id';

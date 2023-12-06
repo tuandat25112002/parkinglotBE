@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="{{asset('admin/vendors/mdi/css/materialdesignicons.min.css')}}">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{{asset('admin/vendors/css/vendor.bundle.base.css')}}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <link href="https://cdn.maptiler.com/maptiler-sdk-js/v1.1.1/maptiler-sdk.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="{{asset('admin/vendors/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
@@ -27,6 +32,7 @@
     <link rel="shortcut icon" href="{{asset('admin/images/favicon.ico')}}" />
   </head>
   <body>
+    
     <div class="container-scroller">
       @include('admin.layouts.header')
       <!-- partial -->
@@ -38,6 +44,12 @@
       </div>
       <!-- page-body-wrapper ends -->
     </div>
+    <script type="text/javascript">
+      $("#close").click(function(){
+        $('.alert').slideUp();
+      });
+      $('.alert').delay(5000).fadeOut();
+    </script>
     <script>
       $(function () {
         // $("#example1").DataTable({
@@ -54,6 +66,10 @@
           "responsive": true,
         });
       });
+    </script>
+    <script src="//cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
+    <script type="text/javascript">
+        CKEDITOR.replace('editor');
     </script>
     <!-- container-scroller -->
     <!-- plugins:js -->
