@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
-class ParkingRequest extends FormRequest
+class ParrkingUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +24,7 @@ class ParkingRequest extends FormRequest
             'lat' => 'required|numeric',
             'long' => 'required|numeric',
             'max' => 'required|numeric',
-            'image' => 'required|image',
+            'image' => 'image',
         ];
     }
 
@@ -35,7 +33,6 @@ class ParkingRequest extends FormRequest
         return [
             'name.required' => 'Tên bãi đổ xe không được để trống',
             'address.required' => 'Địa chỉ bãi đổ xe không được để trống',
-            'image.required' => 'Hình ảnh bãi đổ xe không được để trống',
             'lat.required' => 'Vĩ độ bãi đổ xe không được để trống',
             'long.required' => 'Kinh độ bãi đổ xe không được để trống',
             'max.required' => 'Số vị trí đổ xe không được để trống',
@@ -43,19 +40,6 @@ class ParkingRequest extends FormRequest
             'lat.numberic' => 'Vĩ độ bãi đổ xe phải là một số',
             'max.numberic' => 'Số vị trí của bãi đổ xe phải là một số',
             'image.image' => 'Hình ảnh upload không đúng định dạng',
-
         ];
     }
-    // protected function failedValidation(Validator $validator)
-    // {
-
-    //     $errors = $validator->errors()->all();
-    //     throw new HttpResponseException(response()->json([
-    //         'success' => false,
-    //         'message' => 'Validation errors',
-    //         'data' => $errors,
-    //         'errors' => $validator->errors(),
-    //         'status' => 422,
-    //     ], 422));
-    // }
 }
