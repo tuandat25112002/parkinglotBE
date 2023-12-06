@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Categories extends Model
+class Prohibited extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+
     protected $primarykey = 'id';
     protected $fillable = [
-        'name','status'
+        'Route','start_longitude','start_Latitude','end_longitude','end_Latitude'
 
     ];
-    protected $table = 'categories';
+    protected $table = 'prohibiteds';
 }

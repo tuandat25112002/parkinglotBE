@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Parking Lot | Admin</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('admin/vendors/mdi/css/materialdesignicons.min.css')}}">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{{asset('admin/vendors/css/vendor.bundle.base.css')}}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -27,7 +25,6 @@
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{asset('admin/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('admin/css/admin.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('admin/images/favicon.ico')}}" />
   </head>
@@ -71,6 +68,7 @@
     <script type="text/javascript">
         CKEDITOR.replace('editor');
     </script>
+
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="{{asset('admin/vendors/js/vendor.bundle.base.js')}}"></script>
@@ -87,16 +85,6 @@
     <!-- Custom js for this page -->
     <script src="{{asset('admin/js/dashboard.js')}}"></script>
     <script src="{{asset('admin/js/todolist.js')}}"></script>
-    {{-- data table --}}
-    <script src="{{asset('admin/vendors/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('admin/vendors/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('admin/vendors/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{asset('admin/vendors/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('admin/vendors/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('admin/vendors/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('admin/vendors/datatables-buttons/js/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('admin/vendors/datatables-buttons/js/buttons.print.min.js')}}"></script>
-    <script src="{{asset('admin/vendors/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
     <!-- End custom js for this page -->
   </body>
 </html>

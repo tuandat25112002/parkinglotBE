@@ -39,6 +39,7 @@ class ParkingController extends Controller
      */
     public function create()
     {
+
         return view('admin.parkings.create');
     }
 
@@ -50,6 +51,7 @@ class ParkingController extends Controller
         }
 
         return view('admin.parkings.index')->with(compact('parkings'));
+
     }
 
     /**

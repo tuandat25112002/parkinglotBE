@@ -3,7 +3,7 @@
 <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title">All Categories </h3>
+              <h3 class="page-title">Danh Sách tuyến đường bị cấm </h3>
               <!-- <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('categories.create') }}">Add Category</a></li>
@@ -16,7 +16,7 @@
                 <div class="card">
                   <div class="card-body">
                   <div class="col-md-12 text-right mb-3" style=" margin-left: 40px;">
-                    <a href="{{ route('categories.create') }}" class="btn btn-primary">Add Category</a>
+                    <a href="{{ route('Prohibited.create') }}" class="btn btn-primary">Add Category</a>
                 </div>
                 <div class="card-body">
                     <div class="col-md-12 text-right mb-3">
@@ -39,31 +39,28 @@
                       <thead>
                         <tr>
                           <th> # </th>
-                          <th> Name </th>
-                          <th> Status </th>
+                          <th> Router </th>
+                          <th> Start Longitude </th>
+                          <th> End Longitude</th>
+                          <th> Start Latitude  </th>
+                          <th> End Latitude  </th>
                         <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                      @foreach ($categories as $category)
+                      @foreach ($data as $data)
 					<tr>
-						<th>{{ $category->id }}</th>
-						<td>{{ $category->name }}</td>
+						<th>{{ $data->id }}</th>
+                        <td>{{ $data->Router }}</td>
+						<td>{{ $data->start_longitude }}</td>
+                        <td>{{ $data->end_longitude }}</td>
+                        <td>{{ $data->start_Latitude }}</td>
+                        <td>{{ $data->end_Latitude }}</td>
                         <td>
-                            @if($category->status == 1)
-                                <span class="badge badge-danger">Private</span>
-                            @else
-                                <span class="badge badge-success">Public</span>
-                            @endif
-                        </td>
-
-
-
-                        <td>
-            <form method="POST" action="{{ route('categories.destroy', $category->id) }}">
+            <form method="POST" action="{{ route('Prohibited.destroy', $data->id) }}">
                 @csrf
                 @method('DELETE')
-                <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-success">
+                <a href="{{ route('Prohibited.edit', $data->id) }}" class="btn btn-success">
                     Sửa
                 </a>
                 <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this category?')">Xoá</button>

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -41,15 +40,7 @@ class AdminController extends Controller
         }
         $user_login = $request->only('email', 'password');
         if (Auth::attempt($user_login)) {
-            if (Auth::user()->active == 1) {
-                User::where('id', Auth::user()->id)->update(['updated_at' => Carbon::now()]);
-
-                return redirect()->to('admin/dashboard');
-            } else {
-                Auth::logout();
-
-                return redirect()->back()->with('error', 'Tài khoản của bạn đã bị khóa vui lòng liên hệ với Admin để biết thêm thông tin chi tiết');
-            }
+            return redirect()->to('admin/dashboard');
         } else {
             return redirect()->back()->with('error', 'Mật khẩu hoặc email không chính xác');
         }
@@ -76,7 +67,7 @@ class AdminController extends Controller
             ]);
 
             return response()->json([
-                'message' => 'Đã tạo người dùng thành công, hãy xác nhận email của bạn!',
+                'message' => 'Đã đăng ký thành công, hãy xác nhận email của bạn!',
                 'data' => $user,
                 'status' => 200,
             ], 200);

@@ -3,13 +3,13 @@
 <div class="main-panel">
     <div class="content-wrapper">
         <div class="page-header">
-            <h3 class="page-title"> Add Categories </h3>
+            <h3 class="page-title"> Thêm tuyến đường cấm</h3>
         </div>
         <div class="row">
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Add Categories</h4>
+                        <h4 class="card-title">Thêm tuyến đường cấm</h4>
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -24,29 +24,30 @@
                                 {{session('status')}} <i id="close" class="fas fa-times float-right mt-1"></i>
                             </div>
                         @endif
-                        <form class="forms-sample" method="POST" action="{{ route('categories.store') }}">
+                        <form class="forms-sample" method="POST" action="{{ route('Prohibited.store') }}">
                             @csrf
                             <div class="form-group">
-                                <label for="exampleInputName1">Name : </label>
-                                <input type="text" class="form-control" id="exampleInputName1" name="name" placeholder="Name">
+                                <label for="exampleInputName1">Route : </label>
+                                <input type="text" class="form-control" id="exampleInputName1" name="Route" placeholder="Name">
                             </div>
                             <div class="form-group">
-                                <label for="">Category Status</label>
-                                <div class="form-check">
-                                    <label class="radio-label">
-                                        <input type="radio" name="status" id="public" value="0" checked />
-                                        <span class="radio-custom"></span>
-                                        <span class="radio-text">Public</span>
-                                    </label>
-                                    <label class="radio-label">
-                                        <input type="radio" name="status" id="private" value="1" checked />
-                                        <span class="radio-custom"></span>
-                                        <span class="radio-text">Private</span>
-                                    </label>
-                                </div>
+                                <label for="exampleInputName1">Start Longitude : </label>
+                                <input type="text" class="form-control" id="exampleInputName1" name="start_longitude" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputName1">Start Latitude : </label>
+                                <input type="text" class="form-control" id="exampleInputName1" name="start_Latitude" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputName1">End Longitude : </label>
+                                <input type="text" class="form-control" id="exampleInputName1" name="end_longitude" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputName1">End Latitude : </label>
+                                <input type="text" class="form-control" id="exampleInputName1" name="end_Latitude" placeholder="Name">
                             </div>
                             <button type="submit" class="btn btn-gradient-primary mr-2">Add</button>
-                            <a href="{{ route('categories.index') }}" class="btn btn-light">Cancel</a>
+                            <a href="{{ route('Prohibited.index') }}" class="btn btn-light">Cancel</a>
                         </form>
                     </div>
                 </div>
