@@ -158,4 +158,3 @@ $('.checkbox-active').click(function(){
 </style>
           <!-- content-wrapper ends -->
 @endsection
-?>

@@ -26,7 +26,7 @@ class ParkingRequest extends FormRequest
             'lat' => 'required|numeric',
             'long' => 'required|numeric',
             'max' => 'required|numeric',
-            'image' => 'required|image',
+            'image' => 'required',
         ];
     }
 
@@ -42,7 +42,6 @@ class ParkingRequest extends FormRequest
             'long.numberic' => 'Kinh độ bãi đổ xe phải là một số',
             'lat.numberic' => 'Vĩ độ bãi đổ xe phải là một số',
             'max.numberic' => 'Số vị trí của bãi đổ xe phải là một số',
-            'image.image' => 'Hình ảnh upload không đúng định dạng',
 
         ];
     }
