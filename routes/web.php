@@ -42,6 +42,8 @@ Route::group([
         Route::post('user-role', [UserController::class, 'updateRole'])->name('user-role');
         Route::get('new-park', [ParkingController::class, 'create'])->name('new-park');
         Route::get('list-park', [ParkingController::class, 'list'])->name('list-park');
+        Route::get('new-row', [ProhibitedController::class, 'create'])->name('new-row');
+        Route::get('list-row', [ProhibitedController::class, 'index'])->name('list-row');
         Route::resource('parks', ParkingController::class);
     });
 });

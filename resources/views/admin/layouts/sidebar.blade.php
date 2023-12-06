@@ -65,15 +65,15 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        <a class="nav-link" data-bs-toggle="collapse" href="#ui-ban" aria-expanded="false" aria-controls="ui-ban">
           <span class="menu-title">QL tuyến đường cấm</span>
           <i class="menu-arrow"></i>
           <i class="mdi mdi-crosshairs-gps menu-icon"></i>
         </a>
-        <div class="collapse" id="ui-basic">
+        <div class="collapse" id="ui-ban">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{route('Prohibited.create')}}">Thêm tuyến đường bị cấm</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{route('Prohibited.index')}}">Danh sách tuyến đường bị cấm</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('new-row')}}">Thêm tuyến đường bị cấm</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('list-row')}}">Danh sách tuyến đường bị cấm</a></li>
           </ul>
         </div>
       </li>
