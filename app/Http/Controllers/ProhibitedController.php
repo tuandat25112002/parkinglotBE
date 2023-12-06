@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Session;
 use App\Models\Prohibited;
+use Illuminate\Http\Request;
+
 class ProhibitedController extends Controller
 {
     /**
@@ -17,6 +16,7 @@ class ProhibitedController extends Controller
     {
         //
         $data = Prohibited::paginate(10);
+
         return view('admin.Prohibited.index')->with(compact('data'));
     }
 
@@ -34,7 +34,6 @@ class ProhibitedController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -47,14 +46,14 @@ class ProhibitedController extends Controller
             'end_longitude' => 'required',
             'end_Latitude' => 'required', // Change to match the column name in the table
         ],
-        // Validation messages
-        [
-            'Route.required' => 'Vui lòng nhập Route vào',
-            'start_longitude.required' => 'Vui lòng nhập vào start_longitude',
-            'start_Latitude.required' => 'Vui lòng nhập vào start_Latitude',
-            'end_longitude.required' => 'Vui lòng nhập vào end_longitude',
-            'end_Latitude.required' => 'Vui lòng nhập vào end_Latitude'
-        ]);
+            // Validation messages
+            [
+                'Route.required' => 'Vui lòng nhập Route vào',
+                'start_longitude.required' => 'Vui lòng nhập vào start_longitude',
+                'start_Latitude.required' => 'Vui lòng nhập vào start_Latitude',
+                'end_longitude.required' => 'Vui lòng nhập vào end_longitude',
+                'end_Latitude.required' => 'Vui lòng nhập vào end_Latitude',
+            ]);
 
         $Prohibited = new Prohibited();
         $Prohibited->Route = $data['Route'];
@@ -63,6 +62,7 @@ class ProhibitedController extends Controller
         $Prohibited->end_longitude = $data['end_longitude'];
         $Prohibited->end_Latitude = $data['end_Latitude'];
         $Prohibited->save();
+
         return redirect()->back()->with('status', 'Thêm thành công');
     }
 
@@ -89,7 +89,7 @@ class ProhibitedController extends Controller
         $Prohibited = Prohibited::find($id);
 
         // Check if the category exists
-        if (!$Prohibited) {
+        if (! $Prohibited) {
             // Handle if the category is not found (for example, show an error message or redirect)
             return redirect()->route('Prohibited.index')->with('error', 'Prohibited not found.');
         }
@@ -101,40 +101,40 @@ class ProhibitedController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
-          //
-          $data = $request->validate([
-            'Route'=>'required',
-            'start_longitude' =>'required',
-            'start_Latitude' =>'required',
-            'end_longitude' =>'required',
-            'end_Latitude' =>'required',
+        //
+        $data = $request->validate([
+            'Route' => 'required',
+            'start_longitude' => 'required',
+            'start_Latitude' => 'required',
+            'end_longitude' => 'required',
+            'end_Latitude' => 'required',
 
         ],
-        [
-          'Route.required' => 'Vui lòng nhập Route vào',
-          'start_longitude.required' =>'Vui lòng nhập vào',
-          'start_Latitude.required' =>'Vui lòng nhập vào',
-          'end_longitude.required' =>'Vui lòng nhập vào',
-          'end_Latitude.required' =>'Vui lòng nhập vào'
+            [
+                'Route.required' => 'Vui lòng nhập Route vào',
+                'start_longitude.required' => 'Vui lòng nhập vào',
+                'start_Latitude.required' => 'Vui lòng nhập vào',
+                'end_longitude.required' => 'Vui lòng nhập vào',
+                'end_Latitude.required' => 'Vui lòng nhập vào',
 
-        ]);
+            ]);
 
         $Prohibited = new Prohibited();
-        $Prohibited->Route=$data['Route'];
+        $Prohibited->Route = $data['Route'];
         $Prohibited->start_longitude = $data['start_longitude'];
         $Prohibited->start_Latitude = $data['start_Latitude'];
         $Prohibited->end_longitude = $data['end_longitude'];
         $Prohibited->end_Latitude = $data['end_Latitude'];
 
         $Prohibited->save();
-        return redirect()->back()->with('status','Cập nhật thành công');
+
+        return redirect()->back()->with('status', 'Cập nhật thành công');
     }
 
     /**
@@ -148,6 +148,7 @@ class ProhibitedController extends Controller
         //
         $Prohibited = Prohibited::find($id);
         $Prohibited->delete();
-        return redirect()->back()->with('status','Xóa danh mục thành công');
+
+        return redirect()->back()->with('status', 'Xóa danh mục thành công');
     }
 }

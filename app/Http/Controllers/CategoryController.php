@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Categories;
-use Session;
+use Illuminate\Http\Request;
+
 class CategoryController extends Controller
 {
     /**
@@ -16,6 +16,7 @@ class CategoryController extends Controller
     {
 
         $categories = categories::paginate(10);
+
         return view('admin.categories.index')->with(compact('categories'));
     }
 
@@ -38,22 +39,23 @@ class CategoryController extends Controller
     {
         //
         $data = $request->validate([
-            'name'=>'required',
+            'name' => 'required',
 
-            'status' =>'required',
+            'status' => 'required',
 
         ],
-        [
-          'status.required' => 'Vui lòng status vào',
-          'name.required' =>'Vui lòng thể loại vào'
-        ]);
+            [
+                'status.required' => 'Vui lòng status vào',
+                'name.required' => 'Vui lòng thể loại vào',
+            ]);
         $category = new categories();
-        $category->name=$data['name'];
+        $category->name = $data['name'];
         $category->status = $data['status'];
-        $category->created_at=time();
-        $category->updated_at=time();
+        $category->created_at = time();
+        $category->updated_at = time();
         $category->save();
-        return redirect()->back()->with('status','Thêm danh mục thành công');
+
+        return redirect()->back()->with('status', 'Thêm danh mục thành công');
     }
 
     /**
@@ -79,7 +81,7 @@ class CategoryController extends Controller
         $category = Categories::find($id);
 
         // Check if the category exists
-        if (!$category) {
+        if (! $category) {
             // Handle if the category is not found (for example, show an error message or redirect)
             return redirect()->route('categories.index')->with('error', 'Category not found.');
         }
@@ -87,7 +89,6 @@ class CategoryController extends Controller
         // Return the view and pass the category data to the view
         return view('admin.categories.edit')->with(compact('category'));
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -99,19 +100,20 @@ class CategoryController extends Controller
     {
         //
         $data = $request->validate([
-            'name'=>'required',
-            'status' =>'required',
+            'name' => 'required',
+            'status' => 'required',
         ],
-        [
-            'status.required' => 'Vui lòng status vào',
-            'name.required' =>'Vui lòng thể loại vào'
-          ]);
+            [
+                'status.required' => 'Vui lòng status vào',
+                'name.required' => 'Vui lòng thể loại vào',
+            ]);
         $category = Categories::find($id);
-        $category->name=$data['name'];
+        $category->name = $data['name'];
 
-        $category->updated_at=time();
+        $category->updated_at = time();
         $category->save();
-        return redirect()->back()->with('status','Cập nhật danh mục thành công');
+
+        return redirect()->back()->with('status', 'Cập nhật danh mục thành công');
     }
 
     /**
@@ -125,21 +127,22 @@ class CategoryController extends Controller
         //
         $category = Categories::find($id);
         $category->delete();
-        return redirect()->back()->with('status','Xóa danh mục thành công');
+
+        return redirect()->back()->with('status', 'Xóa danh mục thành công');
     }
+
     public function updateActive(Request $request)
-{
-    $category = Categories::find($request->id);
+    {
+        $category = Categories::find($request->id);
 
-    if (!$category) {
-        return response()->json(['message' => 'Category not found'], 404);
+        if (! $category) {
+            return response()->json(['message' => 'Category not found'], 404);
+        }
+
+        // Update the active status (assuming 'active' is the column name)
+        $category->active = ! $category->active; // Toggle active status
+        $category->save();
+
+        return response()->json(['message' => 'Category status updated successfully'], 200);
     }
-
-    // Update the active status (assuming 'active' is the column name)
-    $category->active = !$category->active; // Toggle active status
-    $category->save();
-
-    return response()->json(['message' => 'Category status updated successfully'], 200);
-}
-
 }
