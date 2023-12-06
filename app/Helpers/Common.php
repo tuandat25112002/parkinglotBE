@@ -19,7 +19,7 @@ if (! function_exists('paginateFromArray')) {
 }
 function uploadImage($file)
 {
-    $name = 'parking-' . time();
+    $name = 'parking-'.time();
 
     return Cloudinary::upload($file->getRealPath(), [
         'folder' => 'parkings',
@@ -32,5 +32,5 @@ function deleteImage($image)
     $url_image = explode('/', $image);
     $image = end($url_image);
     $image_id = current(explode('.', $image));
-    Cloudinary::destroy('parkings/' . $image_id);
+    Cloudinary::destroy('parkings/'.$image_id);
 }

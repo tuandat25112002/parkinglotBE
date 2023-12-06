@@ -24,11 +24,12 @@ class ParrkingUpdateRequest extends FormRequest
             'lat' => 'required|numeric',
             'long' => 'required|numeric',
             'max' => 'required|numeric',
-            'image' => 'image'
+            'image' => 'image',
         ];
     }
 
-    public function messages(): array {
+    public function messages(): array
+    {
         return [
             'name.required' => 'Tên bãi đổ xe không được để trống',
             'address.required' => 'Địa chỉ bãi đổ xe không được để trống',
@@ -40,5 +41,5 @@ class ParrkingUpdateRequest extends FormRequest
             'max.numberic' => 'Số vị trí của bãi đổ xe phải là một số',
             'image.image' => 'Hình ảnh upload không đúng định dạng',
         ];
-    }    
+    }
 }

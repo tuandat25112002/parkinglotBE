@@ -26,11 +26,12 @@ class ParkingRequest extends FormRequest
             'lat' => 'required|numeric',
             'long' => 'required|numeric',
             'max' => 'required|numeric',
-            'image' => 'required|image'
+            'image' => 'required|image',
         ];
     }
 
-    public function messages(): array {
+    public function messages(): array
+    {
         return [
             'name.required' => 'Tên bãi đổ xe không được để trống',
             'address.required' => 'Địa chỉ bãi đổ xe không được để trống',
@@ -44,7 +45,7 @@ class ParkingRequest extends FormRequest
             'image.image' => 'Hình ảnh upload không đúng định dạng',
 
         ];
-    }    
+    }
     // protected function failedValidation(Validator $validator)
     // {
 
