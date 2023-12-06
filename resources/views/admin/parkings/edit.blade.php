@@ -74,7 +74,7 @@
                                             <label for="thumbnail" class="btn btn-gradient-primary">Thêm ảnh</label>
                                             <input type="file" name="image_tmp[]" id="thumbnail" multiple />  
                                             <input type="file" name="image[]" id="images" class="d-none" multiple />  
-                                            <input type="hidden" name="image_delete" id="image_delete"/>
+                                            <input type="input" name="image_delete" id="image_delete" class="d-none"/>
                                             <div class="filearray row"> 
                                                 @foreach ($parking->image as $image) 
                                                 <div class="pip_old col-md-4 px-1 mb-2">

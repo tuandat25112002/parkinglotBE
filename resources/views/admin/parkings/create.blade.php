@@ -53,7 +53,7 @@
                                         <textarea class="form-control" id="editor" name="description" rows="5" resize="none">{{old('description')}}</textarea>
                                       </div>
                                       <div class="form-group">
-                                          <input type="number" class="form-control form-control-lg" id="max" name="max" placeholder="Số lượng chỗ để xe">
+                                          <input type="number" class="form-control form-control-lg" id="max" value="{{old('max')}}" name="max" placeholder="Số lượng chỗ để xe">
                                           <p id="max-errors" class="text-danger mb-0 mt-1 "></p>
                                       </div>          
                                 </div>
@@ -67,7 +67,7 @@
                                             </div>
                                             <label for="thumbnail" class="btn btn-gradient-primary">Thêm ảnh</label>
                                             <input type="file" name="image_tmp[]" id="thumbnail" multiple />  
-                                            <input type="file" name="image[]" id="images" multiple />  
+                                            <input type="file" class="d-none" name="image[]" id="images" multiple />  
                                         <p id="image-errors" class="text-danger mb-0 mt-1 "></p>
                                       </div>
                                 </div>

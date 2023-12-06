@@ -14,7 +14,7 @@
       <div class="card">
         <div class="card-header w-100 d-flex">
           <h6 class=" mt-2">Danh sách bãi đổ xe</h6>
-          <a class="ml-auto plus-btn btn-gradient-primary" href="{{route('new-user')}}"> + </a>
+          <a class="ml-auto plus-btn btn-gradient-primary" href="{{route('new-park')}}"> + </a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">

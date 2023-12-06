@@ -136,49 +136,50 @@ class ParkingController extends Controller
     {
         $parking = Parking::find($id);
         $images = json_decode($parking->image);
-        $image_deleted = explode(',', rtrim($request->image_delete, ','));
-        if (count($images) - count($image_deleted) == 0) {
-            return redirect()->back()->with('erorr', 'Ảnh của bãi đổ xe không được rỗng');
-        } else {
-            foreach ($images as $key => $value) {
-                foreach ($image_deleted as $value_delete) {
-                    if ($value == $value_delete) {
-                        deleteImage($value);
-                        array_splice($images, $key, 1);
+        if ($request->image_delete) {
+            $image_deleted = explode(',', rtrim($request->image_delete, ','));
+            if (((count($images) - count($image_deleted)) == 0) && $request->file('image') == null) {
+                return redirect()->back()->with('erorr', 'Ảnh của bãi đổ xe không được rỗng');
+            } else {
+                foreach ($images as $key => $value) {
+                    foreach ($image_deleted as $value_delete) {
+                        if ($value == $value_delete) {
+                            deleteImage($value);
+                            array_splice($images, $key, 1);
+                        }
                     }
                 }
             }
-            $lat = number_format($request->lat, $decimals = 47, $dec_point = '.', $thousands_sep = ',');
-            $long = number_format($request->long, $decimals = 47, $dec_point = '.', $thousands_sep = ',');
-            try {
-                if ($request->file('image')) {
-                    $file_upload = $request->file('image');
-                    foreach ($file_upload as $key => $file) {
+        }
+        $lat = number_format($request->lat, $decimals = 47, $dec_point = '.', $thousands_sep = ',');
+        $long = number_format($request->long, $decimals = 47, $dec_point = '.', $thousands_sep = ',');
+        try {
+            if ($request->file('image')) {
+                $file_upload = $request->file('image');
+                foreach ($file_upload as $key => $file) {
 
-                        $uploadImage = uploadImage($file);
-                        array_push($images, $uploadImage);
-                    }
+                    $uploadImage = uploadImage($file);
+                    array_push($images, $uploadImage);
                 }
-                $uploadImage_json = json_encode($images);
-                $parking->update([
-                    'name' => $request->name,
-                    'address' => $request->address,
-                    'lat' => $lat,
-                    'long' => $long,
-                    'description' => $request->description,
-                    'image' => $uploadImage_json,
-                    'slot' => $request->max,
-                    'max' => $request->max,
-                ]);
-
-                return redirect()->back()->with('status', 'Cập nhật bãi đổ xe thành công!');
-            } catch (\Throwable $th) {
-                return response()->json([
-                    'message' => $th->getMessage(),
-                    'status' => 400,
-                ], 400);
             }
+            $uploadImage_json = json_encode($images);
+            $parking->update([
+                'name' => $request->name,
+                'address' => $request->address,
+                'lat' => $lat,
+                'long' => $long,
+                'description' => $request->description,
+                'image' => $uploadImage_json,
+                'slot' => $request->max,
+                'max' => $request->max,
+            ]);
 
+            return redirect()->back()->with('status', 'Cập nhật bãi đổ xe thành công!');
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage(),
+                'status' => 400,
+            ], 400);
         }
 
     }
