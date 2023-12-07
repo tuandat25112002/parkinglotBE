@@ -44,9 +44,9 @@
           <div class="card bg-gradient-success card-img-holder text-white">
             <div class="card-body">
               <img src="{{asset('admin/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image" />
-              <h4 class="font-weight-normal mb-3">Số lượng người dùng <i class="mdi mdi-diamond mdi-24px float-right"></i>
+              <h4 class="font-weight-normal mb-3">Số lượng người dùng <i class="mdi mdi-access-point mdi-24px float-right"></i>
               </h4>
-              <h2 class="mb-5"><?php echo number_format($count_users,0)?></h2>
+              <h2 class="mb-5"><i class="mdi mdi-account-multiple"></i> <?php echo number_format($count_users,0)?></h2>
               <h6 class="card-text">Number of users: <?php echo number_format($count_users,0)?> people</h6>
             </div>
           </div>

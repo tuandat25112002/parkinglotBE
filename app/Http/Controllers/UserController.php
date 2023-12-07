@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -118,7 +120,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
@@ -161,5 +163,30 @@ class UserController extends Controller
         ];
 
         return response()->json($arr, 200);
+    }
+
+    public function updatePofile(UserUpdateRequest $userRequest)
+    {
+        try {
+            $user_id = Auth::user()->id;
+            $user = User::find($user_id);
+            $user->update([
+                'name' => $userRequest->name,
+                'email' => $userRequest->email,
+                'phone' => $userRequest->phone,
+            ]);
+
+            return response()->json([
+                'message' => 'Đã cập nhật thành công!',
+                'data' => $user,
+                'status' => 200,
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Failed',
+                'data' => $th,
+                'status' => 400,
+            ], 400);
+        }
     }
 }

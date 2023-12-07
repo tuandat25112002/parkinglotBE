@@ -29,4 +29,5 @@ Route::post('update-slot/{id}', [ParkingController::class, 'updateSlot'])->name(
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('user', [UserController::class, 'show']);
     Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('update-profile', [UserController::class, 'updatePofile'])->name('update-profile');
 });
