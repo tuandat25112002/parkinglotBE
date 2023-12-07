@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ParkingRequest;
 use App\Http\Requests\ParrkingUpdateRequest;
 use App\Models\Parking;
+use Illuminate\Http\Request;
 
 class ParkingController extends Controller
 {
@@ -102,14 +103,20 @@ class ParkingController extends Controller
      */
     public function show($id)
     {
+        try {
+            $parking = Parking::find($id);
+            $parking->image = json_decode($parking->image);
 
-        $parking = Parking::find($id);
-        $parking->image = json_decode($parking->image);
+            return response()->json([
+                $parking,
+            ], 200);
 
-        return response()->json([
-            $parking,
-        ], 200);
-
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage(),
+                'status' => 400,
+            ], 400);
+        }
     }
 
     /**
@@ -200,5 +207,27 @@ class ParkingController extends Controller
         $parking->delete();
 
         return redirect()->back()->with('status', 'Xóa bãi đổ xe thành công!');
+    }
+
+    public function updateSlot(Request $request, $id)
+    {
+        try {
+            $parking = Parking::find($id);
+            $parking->update([
+                'slot' => $request->slot,
+            ]);
+            $parking->image = json_decode($parking->image);
+
+            return response()->json([
+                'message' => 'Cập nhật thành công',
+                'data' => $parking,
+                'status' => 200,
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage(),
+                'status' => 400,
+            ], 400);
+        }
     }
 }
