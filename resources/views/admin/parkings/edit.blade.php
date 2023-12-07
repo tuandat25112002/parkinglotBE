@@ -5,9 +5,7 @@
 </style>
 <div class="main-panel">
     <div class="content-wrapper">
-        <div class="page-header">
-            <h3 class="page-title"> Quản lý bãi đổ xe</h3>
-        </div>
+        @include('admin.layouts.link-bar',['name'=>'Quản lý bãi đổ xe','link'=>'list-park','sub_link'=>'Cập nhật bãi đổ xe'])
         <div class="row">
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">

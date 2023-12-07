@@ -2,15 +2,7 @@
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
-      <div class="page-header">
-        <h3 class="page-title"> Danh sách bãi đổ xe </h3>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Quản lý bãi đổ xe</li>
-          </ol>
-        </nav>
-      </div>
+      @include('admin.layouts.link-bar',['name'=>'Quản lý bãi đổ xe','link'=>'list-park'])
       <div class="card">
         <div class="card-header w-100 d-flex">
           <h6 class=" mt-2">Danh sách bãi đổ xe</h6>

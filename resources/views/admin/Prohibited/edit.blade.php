@@ -3,9 +3,7 @@
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
-        <div class="page-header">
-            <h3 class="page-title"> Sửa tuyến đường bị cấm </h3>
-        </div>
+        @include('admin.layouts.link-bar',['name'=>'Quản lý tuyến đường bị cấm','link'=>'list-row','sub_link'=>'Cập nhật tuyến đường bị cấm'])
         <div class="row">
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">

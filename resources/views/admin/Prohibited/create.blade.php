@@ -1,10 +1,8 @@
 @extends('admin.layouts.master')
 @section('content')
 <div class="main-panel">
-    <div class="content-wrapper">
-        <div class="page-header">
-            <h3 class="page-title"> Thêm tuyến đường cấm</h3>
-        </div>
+<div class="content-wrapper">
+    @include('admin.layouts.link-bar',['name'=>'Quản lý tuyến đường bị cấm','link'=>'list-row','sub_link'=>'Thêm tuyến đường bị cấm'])
         <div class="row">
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">

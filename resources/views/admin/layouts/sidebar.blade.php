@@ -19,7 +19,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('dashboard')}}">
           <span class="menu-title">Dashboard</span>
           <i class="mdi mdi-home menu-icon"></i>
         </a>
@@ -72,8 +72,8 @@
         </a>
         <div class="collapse" id="ui-ban">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{route('new-row')}}">Thêm tuyến đường bị cấm</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{route('list-row')}}">Danh sách tuyến đường bị cấm</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('new-row')}}">Thêm tuyến đường cấm</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('list-row')}}">Danh sách tuyến đường cấm</a></li>
           </ul>
         </div>
       </li>

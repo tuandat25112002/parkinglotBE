@@ -2,9 +2,7 @@
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
-        <div class="page-header">
-            <h3 class="page-title"> Thêm người dùng </h3>
-        </div>
+        @include('admin.layouts.link-bar',['name'=>'Quản lý người dùng','link'=>'list-user','sub_link'=>'Thêm người dùng'])
         <div class="row">
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">

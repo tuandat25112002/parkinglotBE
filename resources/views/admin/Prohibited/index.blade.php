@@ -2,14 +2,7 @@
 @section('content')
 <div class="main-panel">
           <div class="content-wrapper">
-            <div class="page-header">
-              <h3 class="page-title">Danh Sách tuyến đường bị cấm </h3>
-              <!-- <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('categories.create') }}">Add Category</a></li>
-                </ol>
-            </nav> -->
-            </div>
+            @include('admin.layouts.link-bar',['name'=>'Quản lý tuyến đường bị cấm','link'=>'list-row'])
             <div class="row">
 
               <div class="col-lg-12 grid-margin stretch-card">
