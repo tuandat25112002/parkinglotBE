@@ -20,6 +20,22 @@ class ProhibitedController extends Controller
         return view('admin.Prohibited.index')->with(compact('data'));
     }
 
+    public function list()
+    {
+        try {
+            $data = Prohibited::get();
+
+            return response()->json(
+                $data, 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Failed',
+                'status' => 400,
+            ], 400);
+        }
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
