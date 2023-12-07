@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\UserRequest;
+use App\Models\Parking;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +13,16 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.home.dashboard');
+        $parkings = Parking::orderBy('id', 'desc')->get();
+        $users = User::orderBy('id', 'desc')->get();
+        $search_number = 0;
+        foreach ($parkings as $parking) {
+            $search_number += $parking->search_number;
+        }
+        $count_users = count($users);
+        $count_parkings = count($parkings);
+
+        return view('admin.home.dashboard')->with(compact('count_parkings', 'search_number', 'count_users'));
     }
 
     public function login()
