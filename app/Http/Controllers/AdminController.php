@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\Parking;
+use App\Models\Prohibited;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,12 +24,14 @@ class AdminController extends Controller
         $count_users = count($users);
         $count_parkings = count($parkings);
         $parkings = Parking::orderBy('search_number', 'desc')->paginate(15);
+        $users = User::orderBy('updated_at', 'desc')->paginate(5);
         $parkings_all = Parking::orderBy('lat', 'asc')->get();
         foreach ($parkings_all as $parking) {
             $parking->image = json_decode($parking->image);
         }
+        $prohibited = Prohibited::orderBy('start_Latitude', 'desc')->get();
 
-        return view('admin.home.dashboard')->with(compact('count_parkings', 'search_number', 'count_users', 'parkings', 'parkings_all'));
+        return view('admin.home.dashboard')->with(compact('count_parkings', 'search_number', 'count_users', 'parkings', 'parkings_all', 'prohibited', 'users'));
     }
 
     public function login()
@@ -55,7 +59,15 @@ class AdminController extends Controller
         }
         $user_login = $request->only('email', 'password');
         if (Auth::attempt($user_login)) {
-            return redirect()->to('admin/dashboard');
+            if (Auth::user()->active == 1) {
+                User::where('id', Auth::user()->id)->update(['updated_at' => Carbon::now()]);
+
+                return redirect()->to('admin/dashboard');
+            } else {
+                Auth::logout();
+
+                return redirect()->back()->with('error', 'Tài khoản của bạn đã bị khóa vui lòng liên hệ với Admin để biết thêm thông tin chi tiết');
+            }
         } else {
             return redirect()->back()->with('error', 'Mật khẩu hoặc email không chính xác');
         }

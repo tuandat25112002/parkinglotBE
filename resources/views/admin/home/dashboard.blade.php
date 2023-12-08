@@ -136,39 +136,74 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 grid-margin stretch-card">
+        <div class="col-12 grid-margin">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Recent Updates</h4>
-              <div class="d-flex">
-                <div class="d-flex align-items-center me-4 text-muted font-weight-light">
-                  <i class="mdi mdi-account-outline icon-sm me-2"></i>
-                  <span>jack Menqu</span>
-                </div>
-                <div class="d-flex align-items-center text-muted font-weight-light">
-                  <i class="mdi mdi-clock icon-sm me-2"></i>
-                  <span>October 3rd, 2018</span>
-                </div>
-              </div>
-              <div class="row mt-3">
-                <div class="col-6 pe-1">
-                  <img src="admin/images/dashboard/img_1.jpg" class="mb-2 mw-100 w-100 rounded" alt="image">
-                  <img src="admin/images/dashboard/img_4.jpg" class="mw-100 w-100 rounded" alt="image">
-                </div>
-                <div class="col-6 ps-1">
-                  <img src="admin/images/dashboard/img_2.jpg" class="mb-2 mw-100 w-100 rounded" alt="image">
-                  <img src="admin/images/dashboard/img_3.jpg" class="mw-100 w-100 rounded" alt="image">
-                </div>
-              </div>
-              <div class="d-flex mt-5 align-items-top">
-                <img src="admin/images/faces/face3.jpg" class="img-sm rounded-circle me-3" alt="image">
-                <div class="mb-0 flex-grow">
-                  <h5 class="me-2 mb-2">School Website - Authentication Module.</h5>
-                  <p class="mb-0 font-weight-light">It is a long established fact that a reader will be distracted by the readable content of a page.</p>
-                </div>
-                <div class="ms-auto">
-                  <i class="mdi mdi-heart-outline text-muted"></i>
-                </div>
+              <h4 class="card-title">Truy cập gần đây</h4>
+              <div class="table-responsive">
+                <table class="table table-radius">
+                  <thead>
+                  <tr class="btn-gradient-primary text-light fw-bold">
+                    <th colspan="2">Người dùng</th>
+                    <th>Email</th>
+                    <th>Số điện thoại</th>
+                    <th>Quyền truy cập</th>
+                    <th>Trạng thái</th>
+                    <th>Truy cập gần đây</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                      @foreach($users as $key => $value)
+                          <tr>
+                          <td class="ml-3 border-r-0 ">
+                              @if(isset($value->avatar))
+                                  <img src="{{asset($value->avatar)}}" alt="image">
+                              @else 
+                                  <img src="{{asset('admin/images/avatar-default.png')}}" alt="image">
+                              @endif
+                          </td>
+                          <td> {{$value->name}}</td>
+                          <td>
+                              {{$value->email}}
+                          </td>
+                          <td>{{$value->phone}}</td>
+                          <td>
+                            @if($value->role == 0)
+                                <label class="badge badge-gradient-success">Admin</label>
+                            @else 
+                              @if($value->role == 1) 
+                                <label class="badge badge-gradient-info">Đại lý</label>
+                              @else 
+                                <label class="badge badge-gradient-warning">Người dùng</label>
+                              @endif
+                            @endif
+                          </td>
+                          <td> 
+                              @if($value->active == 1) 
+                                <label class="badge badge-gradient-info">Hoạt động</label>
+                              @else 
+                                <label class="badge badge-gradient-danger">Không hoạt động</label>
+                              @endif
+                          </td>
+                          <td>
+                            <?php echo date_format($value->updated_at,"Y/m/d H:i:s");?>  
+                             </td>
+                          </tr>
+                      @endforeach    
+                  </tbody>
+                  <tfoot>
+                      <thead>
+                          <tr>
+                            <th colspan="2">Người dùng</th>
+                            <th>Email</th>
+                            <th>Số điện thoại</th>
+                            <th>Quyền truy cập</th>
+                            <th>Trạng thái</th>
+                            <th>Truy cập gần đây</th>
+                          </tr>
+                          </thead>
+                  </tfoot>
+                </table>
               </div>
             </div>
           </div>
@@ -326,6 +361,14 @@ var map_init = L.map('map', {
     center: [9.0820, 8.6753],
     zoom: 1
 });
+const LeafIcon = L.Icon.extend({
+		options: {
+			iconSize:     [20, 50],
+
+		}
+	});
+
+const prohibitedIcon = new LeafIcon({iconUrl: 'https://res.cloudinary.com/dcugpagjy/image/upload/v1702023454/pngtree-parking-is-prohibited-icon-png-image_5091096_szkee6.png'});
 var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map_init);
@@ -378,6 +421,9 @@ function getPosition(position) {
     @foreach($parkings_all as $parking)
       var featureGroup = L.featureGroup([ L.marker([{{$parking->lat}}, {{$parking->long}}]), circle]).addTo(map_init)
       map_init.fitBounds(featureGroup.getBounds())
+    @endforeach
+    @foreach($prohibited as $value)
+      var featureGroup = L.featureGroup([ L.marker([{{$value->start_Latitude}}, {{$value->start_longitude}}], {icon: prohibitedIcon}), circle]).addTo(map_init)
     @endforeach
  
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,20 +20,20 @@ class AuthController extends Controller
                     'message' => ['These credentials do not match our records.'],
                     'status' => 201,
                 ], 404);
+            } else {
+                $token = $user->createToken('my-app-token')->plainTextToken;
+                User::where('id', $user->id)->update(['updated_at' => Carbon::now()]);
+                $response = [
+                    'message' => 'Login Successfully',
+                    'data' => [
+                        'user' => $user,
+                        'token' => $token,
+                    ],
+                    'status' => 200,
+                ];
+
+                return response($response, 200);
             }
-
-            $token = $user->createToken('my-app-token')->plainTextToken;
-
-            $response = [
-                'message' => 'Login Successfully',
-                'data' => [
-                    'user' => $user,
-                    'token' => $token,
-                ],
-                'status' => 200,
-            ];
-
-            return response($response, 200);
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => 'Failed',

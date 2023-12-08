@@ -92,18 +92,6 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pages/forms/basic_elements.html">
-          <span class="menu-title">Forms</span>
-          <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="pages/tables/basic-table.html">
-          <span class="menu-title">Tables</span>
-          <i class="mdi mdi-table-large menu-icon"></i>
-        </a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
           <span class="menu-title">Sample Pages</span>
           <i class="menu-arrow"></i>
@@ -112,8 +100,6 @@
         <div class="collapse" id="general-pages">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
             <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
             <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
           </ul>
@@ -124,7 +110,7 @@
           <div class="border-bottom">
             <h6 class="font-weight-normal mb-3">Projects</h6>
           </div>
-          <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a project</button>
+          <a href="{{route('logout')}}" class="btn btn-block btn-lg btn-gradient-primary mt-4">Đăng xuất</a>
           <div class="mt-4">
             <div class="border-bottom">
               <p class="text-secondary">Categories</p>
