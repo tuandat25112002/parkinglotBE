@@ -79,10 +79,15 @@
       </li>
       @else 
       @endif
-      
+      <li class="nav-item">
+        <a class="nav-link" href="">
+          <span class="menu-title">Thống kê</span>
+          <i class="mdi mdi-chart-bar menu-icon"></i>
+        </a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="pages/icons/mdi.html">
-          <span class="menu-title">Icons</span>
+          <span class="menu-title">Lịch sử sử dụng</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
@@ -90,12 +95,6 @@
         <a class="nav-link" href="pages/forms/basic_elements.html">
           <span class="menu-title">Forms</span>
           <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="pages/charts/chartjs.html">
-          <span class="menu-title">Charts</span>
-          <i class="mdi mdi-chart-bar menu-icon"></i>
         </a>
       </li>
       <li class="nav-item">

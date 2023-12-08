@@ -209,9 +209,10 @@ class ParkingController extends Controller
         return redirect()->back()->with('status', 'Xóa bãi đổ xe thành công!');
     }
 
-    public function updateSlot(Request $request, $id)
+    public function updateSlot(Request $request)
     {
         try {
+            $id = $request->id;
             $parking = Parking::find($id);
             $parking->update([
                 'slot' => $request->slot,

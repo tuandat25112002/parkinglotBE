@@ -44,7 +44,7 @@
                       @foreach ($data as $data)
 					<tr>
 						<th>{{ $data->id }}</th>
-                        <td>{{ $data->Router }}</td>
+                        <td>{{ $data->Route }}</td>
 						<td>{{ $data->start_longitude }}</td>
                         <td>{{ $data->end_longitude }}</td>
                         <td>{{ $data->start_Latitude }}</td>
