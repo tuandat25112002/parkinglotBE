@@ -21,12 +21,13 @@ class AdminController extends Controller
         }
         $count_users = count($users);
         $count_parkings = count($parkings);
-        $parkings =  Parking::orderBy('search_number','desc')->paginate(15);
-        $parkings_all = Parking::orderBy('lat','asc')->get();
+        $parkings = Parking::orderBy('search_number', 'desc')->paginate(15);
+        $parkings_all = Parking::orderBy('lat', 'asc')->get();
         foreach ($parkings_all as $parking) {
             $parking->image = json_decode($parking->image);
         }
-        return view('admin.home.dashboard')->with(compact('count_parkings', 'search_number', 'count_users','parkings','parkings_all'));
+
+        return view('admin.home.dashboard')->with(compact('count_parkings', 'search_number', 'count_users', 'parkings', 'parkings_all'));
     }
 
     public function login()
