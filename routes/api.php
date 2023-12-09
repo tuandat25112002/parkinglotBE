@@ -25,6 +25,7 @@ Route::resource('parkings', ParkingController::class);
 Route::post('login', [AuthController::class, 'index']);
 Route::post('register', [AuthController::class, 'register']);
 Route::get('prohibiteds', [ProhibitedController::class, 'list'])->name('prohibiteds');
+Route::get('parking-search', [ParkingController::class, 'search'])->name('parking-search');
 Route::post('update-slot', [ParkingController::class, 'updateSlot'])->name('update-slot');
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('user', [UserController::class, 'show']);

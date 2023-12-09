@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('', [AdminController::class, 'login'])->name('login');
 Route::get('login', [AdminController::class, 'login'])->name('login');
 Route::get('register', [AdminController::class, 'register'])->name('register');
 Route::post('check-login', [AdminController::class, 'checkLogin']);

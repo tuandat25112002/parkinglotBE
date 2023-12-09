@@ -231,4 +231,26 @@ class ParkingController extends Controller
             ], 400);
         }
     }
+
+    public function search(Request $request)
+    {
+
+        try {
+            $keyword = $request->keyword;
+            $parkings = Parking::when(! empty($request->keyword), function ($q) use ($keyword) {
+                $q->whereRaw('`name` like "%'.$keyword.'%" OR `address` like "%'.$keyword.'%"');
+            })->get();
+            foreach ($parkings as $value) {
+                $value->image = json_decode($value->image);
+            }
+
+            return response()->json(
+                $parkings, 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Failed',
+                'status' => 400,
+            ], 400);
+        }
+    }
 }
