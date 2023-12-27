@@ -12,7 +12,6 @@
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
     crossorigin="" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-    <link href="https://cdn.maptiler.com/maptiler-sdk-js/v1.1.1/maptiler-sdk.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="{{asset('admin/vendors/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
@@ -27,7 +26,7 @@
     <link rel="stylesheet" href="{{asset('admin/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('admin/css/admin.css')}}">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{asset('admin/images/favicon.ico')}}" />
+    <link rel="shortcut icon" href="{{asset('admin/images/logo-full.png')}}" />
   </head>
   <body>
     

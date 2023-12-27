@@ -107,19 +107,7 @@
       </li>
       <li class="nav-item sidebar-actions">
         <span class="nav-link">
-          <div class="border-bottom">
-            <h6 class="font-weight-normal mb-3">Projects</h6>
-          </div>
           <a href="{{route('logout')}}" class="btn btn-block btn-lg btn-gradient-primary mt-4">Đăng xuất</a>
-          <div class="mt-4">
-            <div class="border-bottom">
-              <p class="text-secondary">Categories</p>
-            </div>
-            <ul class="gradient-bullet-list mt-4">
-              <li>Free</li>
-              <li>Pro</li>
-            </ul>
-          </div>
         </span>
       </li>
     </ul>

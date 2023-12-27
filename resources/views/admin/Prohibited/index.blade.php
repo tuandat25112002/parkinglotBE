@@ -4,85 +4,70 @@
           <div class="content-wrapper">
             @include('admin.layouts.link-bar',['name'=>'Quản lý tuyến đường bị cấm','link'=>'list-row'])
             <div class="row">
-
-              <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                  <div class="col-md-12 text-right mb-3" style=" margin-left: 40px;">
-                    <a href="{{ route('Prohibited.create') }}" class="btn btn-primary">Add Category</a>
+              <div class="card p-0">
+                <div class="card-header w-100 d-flex">
+                  <h6 class=" mt-2">Danh sách bãi đổ xe</h6>
+                  <a class="ml-auto plus-btn btn-gradient-primary" href="{{ route('Prohibited.create') }}"> + </a>
                 </div>
+                <!-- /.card-header -->
                 <div class="card-body">
-                    <div class="col-md-12 text-right mb-3">
-                    @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                                @if (session('status'))
-                        <div class="alert container-fluid alert-success" role="alert">
-                                {{session('status')}} <i id="close" class="fas fa-times float-right mt-1"></i>
-                            </div>
-                        @endif
-                </div>
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th> # </th>
-                          <th> Router </th>
-                          <th> Start Longitude </th>
-                          <th> End Longitude</th>
-                          <th> Start Latitude  </th>
-                          <th> End Latitude  </th>
-                        <th>Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
+                  @if (session('status'))
+                                <div class="alert container-fluid alert-success" role="alert">
+                                        {{session('status')}} <i id="close" class="mdi mdi-close-circle float-right mt-1"></i>
+                                    </div>
+                                @endif
+                                @if (session('erorr'))
+                                <div class="alert container-fluid alert-danger" role="alert">
+                                        {{session('erorr')}} <i id="close" class="mdi mdi-close-circle float-right mt-1"></i>
+                                    </div>
+                                @endif
+                  <table id="example1" class="table table-radius">
+                    <thead>
+                    <tr class="btn-gradient-primary text-light fw-bold">
+                      <th> Tuyến đường </th>
+                      <th> Kinh độ bắt đầu </th>
+                      <th> Kinh độ kế thúc</th>
+                      <th> Vĩ độ bắt đầu  </th>
+                      <th> Vĩ độ kết thúc  </th>
+                    <th>Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                       @foreach ($data as $data)
-					<tr>
-						<th>{{ $data->id }}</th>
-                        <td>{{ $data->Route }}</td>
-						<td>{{ $data->start_longitude }}</td>
-                        <td>{{ $data->end_longitude }}</td>
-                        <td>{{ $data->start_Latitude }}</td>
-                        <td>{{ $data->end_Latitude }}</td>
-                        <td>
-            <form method="POST" action="{{ route('Prohibited.destroy', $data->id) }}">
-                @csrf
-                @method('DELETE')
-                <a href="{{ route('Prohibited.edit', $data->id) }}" class="btn btn-success">
-                    Sửa
-                </a>
-                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this category?')">Xoá</button>
-            </form>
-        </td>
-					</tr>
-					@endforeach
-                      </tbody>
-                    </table>
-                  </div>
+                      <tr>
+                                    <td>{{ $data->Route }}</td>
+                        <td>{{ $data->start_longitude }}</td>
+                                    <td>{{ $data->end_longitude }}</td>
+                                    <td>{{ $data->start_Latitude }}</td>
+                                    <td>{{ $data->end_Latitude }}</td>
+                      <td>
+                            <form method="POST" action="{{ route('Prohibited.destroy', $data->id) }}">
+                              @csrf
+                              @method('DELETE')
+                              <button onclick ="return confirm('Bạn muốn xóa tuyến đường này ?');" type="submit " class="btn btn-gradient-primary p-1"><i class="mdi mdi-delete-forever"></i></button>
+                              <a href="{{ route('Prohibited.edit', $data->id) }}" class="btn btn-view btn-outline-dark p-1"><i class="mdi mdi-table-edit"></i></a>
+                            </form>
+                    </td>
+                      </tr>
+                      @endforeach  
+                    </tbody>
+                    <tfoot>
+                        <thead>
+                            <tr>
+                              <th> Tuyến đường </th>
+                              <th> Kinh độ bắt đầu </th>
+                              <th> Kinh độ kế thúc</th>
+                              <th> Vĩ độ bắt đầu  </th>
+                              <th> Vĩ độ kết thúc  </th>
+                            <th>Thao tác</th>
+                            </tr>
+                            </thead>
+                    </tfoot>
+                  </table>
                 </div>
+                <!-- /.card-body -->
               </div>
-              <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-
-                </div>
-              </div>
-
-            </div>
           </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:../../partials/_footer.html -->
-          <footer class="footer">
-            <div class="container-fluid clearfix">
-              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin template</a> from Bootstrapdash.com</span>
-            </div>
-          </footer>
-          <!-- partial -->
         </div>
         <script type="text/javascript">
 $('.checkbox-active').click(function(){

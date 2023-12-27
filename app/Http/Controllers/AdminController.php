@@ -61,7 +61,10 @@ class AdminController extends Controller
         if (Auth::attempt($user_login)) {
             if (Auth::user()->active == 1) {
                 User::where('id', Auth::user()->id)->update(['updated_at' => Carbon::now()]);
-
+                if (Auth::user()->role != 0) {
+                    Auth::logout();
+                    return redirect()->back()->with('error', 'Bạn đã nhập sai mật khẩu hoặc email');
+                }
                 return redirect()->to('admin/dashboard');
             } else {
                 Auth::logout();
