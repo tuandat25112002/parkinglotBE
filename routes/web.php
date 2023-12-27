@@ -25,7 +25,7 @@ Route::post('check-login', [AdminController::class, 'checkLogin']);
 Route::post('create-user', [AdminController::class, 'create'])->name('create-user');
 Route::group([
     'prefix' => '/admin',
-    'middleware' => ['auth','agent'],
+    'middleware' => ['auth', 'agent'],
 ], function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('logout', [AdminController::class, 'logoutHttp'])->name('logout');
