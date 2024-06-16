@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+
     protected $primarykey = 'id';
 
     protected $fillable = [
-        'comment', 'ranking','',
+        'comment', 'ranking', '',
 
     ];
 
