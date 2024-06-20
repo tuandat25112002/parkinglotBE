@@ -165,6 +165,8 @@
                     $('#updated-user').html(date.toLocaleString("en-GB"));
                     if(data.data.avatar != null) {
                         $('#avatar-user').prop("src", data.data.avatar);
+                    } else {
+                      $('#avatar-user').prop("src", "https://res.cloudinary.com/dcugpagjy/image/upload/v1718611748/avatar/avatar-default_aq0mwv.png");
                     }
                 },
             })

@@ -80,6 +80,12 @@
       @else 
       @endif
       <li class="nav-item">
+        <a class="nav-link" href="{{route('list-support')}}">
+          <span class="menu-title">Quản lý SOS</span>
+          <i class="mdi mdi-radio-tower menu-icon"></i>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="">
           <span class="menu-title">Thống kê</span>
           <i class="mdi mdi-chart-bar menu-icon"></i>

@@ -4,7 +4,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ParkingController;
 use App\Http\Controllers\ProhibitedController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SupportController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,13 +24,21 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 Route::resource('parkings', ParkingController::class);
+Route::resource('supports', SupportController::class);
 Route::post('login', [AuthController::class, 'index']);
 Route::post('register', [AuthController::class, 'register']);
 Route::get('prohibiteds', [ProhibitedController::class, 'list'])->name('prohibiteds');
 Route::get('parking-search', [ParkingController::class, 'search'])->name('parking-search');
 Route::post('update-slot', [ParkingController::class, 'updateSlot'])->name('update-slot');
+Route::post('support-status', [SupportController::class, 'updateStatus'])->name('support-status');
+Route::get('supports-user/{iduser}', [SupportController::class, 'listSupportForwardUser'])->name('supports-user');
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('user', [UserController::class, 'show']);
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('update-profile', [UserController::class, 'updatePofile'])->name('update-profile');
 });
+//Clear cache
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+});
+

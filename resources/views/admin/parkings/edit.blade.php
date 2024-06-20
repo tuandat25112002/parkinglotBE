@@ -10,7 +10,7 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Thêm bãi đổ xe</h4>
+                        <h4 class="card-title">Cập nhật bãi đổ xe</h4>
                         @if ($errors->any())
                             @foreach ($errors->all() as $error)
                               <div class="alert alert-danger">
@@ -159,6 +159,7 @@
                     title: "Loading...",
                     html: "Đang xử lý",
                     timerProgressBar: true,
+                    allowOutsideClick: false,
                     didOpen: () => {
                         Swal.showLoading();
                     },

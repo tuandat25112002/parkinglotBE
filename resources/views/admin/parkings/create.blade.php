@@ -143,6 +143,7 @@
                     Swal.fire({
                     title: "Loading...",
                     html: "Đang xử lý",
+                    allowOutsideClick: false,
                     timerProgressBar: true,
                     didOpen: () => {
                         Swal.showLoading();

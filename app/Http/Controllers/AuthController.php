@@ -17,8 +17,8 @@ class AuthController extends Controller
             // print_r($data);
             if (! $user || ! Hash::check($request->password, $user->password)) {
                 return response([
-                    'message' => ['These credentials do not match our records.'],
-                    'status' => 201,
+                    'message' => ['Email or Password is incorrect!'],
+                    'status' => 401,
                 ], 404);
             } else {
                 $token = $user->createToken('my-app-token')->plainTextToken;
@@ -37,7 +37,7 @@ class AuthController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => 'Failed',
-                'data' => $th->getMessage(),
+                'data' => "Email or Password is incorrect!",
                 'status' => 400,
             ], 400);
         }

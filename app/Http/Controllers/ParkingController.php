@@ -6,6 +6,7 @@ use App\Http\Requests\ParkingRequest;
 use App\Http\Requests\ParrkingUpdateRequest;
 use App\Models\Parking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ParkingController extends Controller
 {
@@ -211,6 +212,7 @@ class ParkingController extends Controller
 
     public function updateSlot(Request $request)
     {
+        Cache::flush();
         try {
             $id = $request->id;
             $parking = Parking::find($id);

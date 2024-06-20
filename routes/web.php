@@ -6,6 +6,7 @@ use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\ParkingController;
 use App\Http\Controllers\ProhibitedController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SupportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,7 +45,10 @@ Route::group([
         Route::get('list-park', [ParkingController::class, 'list'])->name('list-park');
         Route::get('new-row', [ProhibitedController::class, 'create'])->name('new-row');
         Route::get('list-row', [ProhibitedController::class, 'index'])->name('list-row');
+        Route::get('list-support', [SupportController::class, 'index'])->name('list-support');
+        Route::post('support-status', [SupportController::class, 'updateStatus'])->name('support-status');
         Route::resource('parks', ParkingController::class);
+        Route::resource('sos', SupportController::class);
     });
 });
 // quản lý tuyến đường cấm
