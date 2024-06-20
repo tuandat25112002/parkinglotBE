@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SupportRequest;
 use App\Models\Support;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class SupportController extends Controller
 {
@@ -16,7 +15,8 @@ class SupportController extends Controller
      */
     public function index()
     {
-        $supports = Support::with('User')->orderBy('id','desc')->get();
+        $supports = Support::with('User')->orderBy('id', 'desc')->get();
+
         return view('admin.supports.index')->with(compact('supports'));
     }
 
@@ -27,7 +27,7 @@ class SupportController extends Controller
      */
     public function create()
     {
-       
+
     }
 
     /**
@@ -51,6 +51,7 @@ class SupportController extends Controller
                 'description' => $request->description,
                 'status' => $request->status,
             ]);
+
             return response()->json([
                 'message' => 'Thêm SOS thành công',
                 'data' => $support,
@@ -64,20 +65,22 @@ class SupportController extends Controller
         }
     }
 
-    public function updateStatus (Request $request) {
+    public function updateStatus(Request $request)
+    {
         $id = $request->id;
         $support = Support::find($id);
         try {
             Support::where('id', $support->id)->update(['status' => $request->status]);
             $arr = [
                 'status' => 200,
-                'message' => 'Cập nhật trạng thái thành công',
+                'message' => 'Cập n
+                hật trạng thái thành công',
             ];
 
             return response()->json($arr, 200);
         } catch (\Throwable $th) {
             return response()->json([
-                'message' => "Cập nhật thất bại",
+                'message' => 'Cập nhật thất bại',
                 'status' => 400,
             ], 400);
         }
@@ -92,13 +95,16 @@ class SupportController extends Controller
     public function show($id)
     {
         $support = Support::find($id);
+
         return response()->json([
             $support,
         ], 200);
     }
 
-    public function listSupportForwardUser($iduser) {
-        $supports = Support::where('iduser',$iduser)->get();
+    public function listSupportForwardUser($iduser)
+    {
+        $supports = Support::where('iduser', $iduser)->get();
+
         return response()->json([
             $supports,
         ], 200);
@@ -113,13 +119,13 @@ class SupportController extends Controller
     public function edit($id)
     {
         $support = Support::with('User')->find($id);
+
         return view('admin.supports.edit')->with(compact('support'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -137,12 +143,12 @@ class SupportController extends Controller
     public function destroy($id)
     {
         $support = Support::find($id);
-        if($support->status != 0) {
-            return redirect()->back()->with('status', 'Yêu cầu này không thể xóa! Bạn chỉ có thể xóa yêu cầu đã bị hủy!'); 
-        }
-        else {
+        if ($support->status != 0) {
+            return redirect()->back()->with('status', 'Yêu cầu này không thể xóa! Bạn chỉ có thể xóa yêu cầu đã bị hủy!');
+        } else {
             $support->delete();
-            return redirect()->back()->with('status', 'Xóa yêu cầ thành công!'); 
+
+            return redirect()->back()->with('status', 'Xóa yêu cầ thành công!');
         }
     }
 }

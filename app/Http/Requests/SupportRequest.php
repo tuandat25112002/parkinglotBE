@@ -24,7 +24,7 @@ class SupportRequest extends FormRequest
             'long' => 'required|numeric',
             'phone' => 'required',
             'address' => 'required',
-            'status' => 'required|numeric'
+            'status' => 'required|numeric',
         ];
     }
 

@@ -5,8 +5,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\ParkingController;
 use App\Http\Controllers\ProhibitedController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\SupportController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*

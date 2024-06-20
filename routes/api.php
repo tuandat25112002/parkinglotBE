@@ -3,8 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ParkingController;
 use App\Http\Controllers\ProhibitedController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\SupportController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +38,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('update-profile', [UserController::class, 'updatePofile'])->name('update-profile');
 });
 //Clear cache
-Route::get('/clear-cache', function() {
+Route::get('/clear-cache', function () {
     $exitCode = Artisan::call('cache:clear');
 });
-

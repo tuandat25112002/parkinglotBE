@@ -37,7 +37,7 @@ class AuthController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => 'Failed',
-                'data' => "Email or Password is incorrect!",
+                'data' => 'Email or Password is incorrect!',
                 'status' => 400,
             ], 400);
         }

@@ -46,8 +46,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function Support() {
-        return $this->hasMany('App\Models\Support','iduser','id');
+    public function Support()
+    {
+        return $this->hasMany('App\Models\Support', 'iduser', 'id');
     }
-
 }

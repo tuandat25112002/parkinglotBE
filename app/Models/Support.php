@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Support extends Model
 {
     use HasFactory;
+
     protected $table = 'supports';
 
     /**
@@ -22,12 +23,13 @@ class Support extends Model
         'long',
         'address',
         'description',
-        'status'   //1:confirming,2:waiting,3:complete,0:cancle
+        'status',   //1:confirming,2:waiting,3:complete,0:cancle
     ];
 
     protected $primaryKey = 'id';
 
-    public function User() {
-        return $this->belongsTo('App\Models\User','iduser','id');
+    public function User()
+    {
+        return $this->belongsTo('App\Models\User', 'iduser', 'id');
     }
 }
